@@ -3,7 +3,7 @@ use elrond_wasm_debug::*;
 fn world() -> BlockchainMock {
     let mut blockchain = BlockchainMock::new();
 
-    blockchain.register_contract_builder("file:output/lib.wasm", vesting_locker::ContractBuilder);
+    blockchain.register_contract_builder("file:output/vesting-locker.wasm", vesting_locker::ContractBuilder);
     blockchain
 }
 
