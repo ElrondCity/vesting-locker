@@ -2,7 +2,7 @@
 
 elrond_wasm::imports!();
 
-/// This contract is meant to store 10% of the $ECITY token's supply, and unlock it over 5 years for the Team to use in the project's developement.
+/// This contract is meant to store 10% of the $ECITY token's supply, and unlock it over 5 years for the Team to use in the project's developement. Should not be upgradable
 #[elrond_wasm::contract]
 pub trait VestingLocker {
     #[init]
@@ -31,7 +31,7 @@ pub trait VestingLocker {
 
         let payment = self.call_value().all_esdt_transfers().get(0);
 
-        require!(&payment.amount > &0, "Payment must be greater than 0");
+        require!(&payment.amount > &0, "Cannot lock 0 tokens");
 
         self.token().set(&payment.token_identifier);
 
